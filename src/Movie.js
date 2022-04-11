@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 class Movie extends Component {
   render() {
     const { id, title, year, genres, summary, cover_img } = this.props;
+
     return (
       <div>
         <img src={cover_img} alt={title} title={title} />
@@ -21,6 +22,7 @@ class Movie extends Component {
     );
   }
 }
+
 export default Movie;
 
 Movie.propTypes = {

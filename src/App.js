@@ -16,42 +16,45 @@ class App extends Component {
     } = await axios.get(
       "https://yts.mx/api/v2/list_movies.json?sort_by=rating"
     );
+
     this.setState({ isLoading: false, movies });
   };
 
   componentDidMount() {
+    // setTimeout(() => {
+    //   this.setState({ isLoading: false });
+    // }, 6000);
     this.getMovieData();
   }
 
   render() {
     const { isLoading, movies } = this.state;
     return (
-      <Router basename="./movie-app">
-        <section>
-          {isLoading ? (
-            <div>
-              <span>Loading...</span>
-            </div>
-          ) : (
-            <div>
-              {movies.map((data) => {
-                return (
-                  <Movie
-                    key={data.id}
-                    id={data.id}
-                    title={data.title}
-                    year={data.year}
-                    genres={data.genres}
-                    summary={data.summary}
-                    cover_img={data.medium_cover_image}
-                  />
-                );
-              })}
-            </div>
-          )}
-        </section>
-      </Router>
+      <section>
+        {isLoading ? (
+          <div>
+            <span>Loading...</span>
+          </div>
+        ) : (
+          <div>
+            {movies.map((data) => {
+              return (
+                <Movie
+                  key={data.id}
+                  id={data.id}
+                  title={data.title}
+                  year={data.year}
+                  genres={data.genres}
+                  summary={data.summary}
+                  cover_img={data.medium_cover_image}
+                />
+              );
+            })}
+          </div>
+        )}
+      </section>
     );
   }
 }
+
 export default App;
